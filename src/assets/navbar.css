@@ -1,0 +1,53 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  background-color: #3c518e;
+  width: 100%;
+  display: flex;
+  color: #fff;
+}
+
+h3 {
+  width: 100%;
+}
+
+nav,
+ul {
+  list-style: none;
+  display: flex;
+}
+
+nav {
+  width: 100%;
+  align-items: center;
+}
+
+ul {
+  gap: 1em;
+  align-items: center;
+  margin: 0;
+  padding-left: 1em;
+}
+
+ul {
+  flex-grow: 1;
+}
+
+li a,
+nav a,
+nav svg {
+  color: #a7b0cc;
+}
+
+li a:hover,
+nav .login:hover a,
+nav .login:hover svg {
+  color: #fff;
+}
+
+.login {
+  padding-right: 1em;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
