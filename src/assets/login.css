@@ -1,8 +1,8 @@
-h1 {
+.login h1 {
   text-align: center;
 }
 
-form {
+.login .form-login {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -14,29 +14,29 @@ form {
   margin: 0 auto;
 }
 
-input {
+.login input {
   border: 1px solid #ced4da;
   border-radius: 4px;
   height: 2em;
 }
 
-.bg--blue {
+.login .bg--blue {
   background-color: #3c518e;
   color: #fff;
 }
 
-.bg--green {
+.login .bg--green {
   background-color: #95b259;
 }
 
-.wrapper {
+.login .wrapper {
   display: flex;
   flex-direction: column;
   margin-bottom: 1em;
 }
 
-.wrapper,
-button,
-a {
+.login .wrapper,
+.login button,
+.login a {
   width: 100%;
 }

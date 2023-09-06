@@ -15,18 +15,18 @@ export default function Navbar() {
                         <h3>Express Brain</h3>
                     </li>
                     <li>
-                        <NavLink to=".." className={({ isActive}) => isActive ? "active" : "not-current"}>Jouer</NavLink>
+                        <NavLink to=".." className={({ isActive }) => isActive ? "active" : "not-current"}>Jouer</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/rank"  className={({ isActive}) => isActive ? "active" : "not-current"}>Classement</NavLink>
+                        <NavLink to="/rank"  className={({ isActive }) => isActive ? "active" : "not-current"}>Classement</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/teams" className={({ isActive}) => isActive ? "active" : "not-current"}>Equipes</NavLink>
+                        <NavLink to="/teams" className={({ isActive }) => isActive ? "active" : "not-current"}>Equipes</NavLink>
                     </li>
                 </ul>
 
-                <div className='login'>
-                    <NavLink to="/login"  className={({ isActive}) => isActive ? "active" : "not-current"}>Connexion</NavLink>
+                <div className='login-nav'>
+                    <NavLink to="/login"  className={({ isActive }) => isActive ? "active" : "not-current"}>Connexion</NavLink>
                     <FontAwesomeIcon icon={faCircleUser} />
                 </div>
             </nav>

@@ -20,18 +20,20 @@ export default function Login() {
     }
 
     return(
-        <>
+        <div className="login">
             <h1>Connexion</h1>
 
-            <form onSubmit={handleSubmit}>
+            <form className={'form-login'} onSubmit={handleSubmit}>
                 <div className="wrapper">
                     <label htmlFor="email">Email</label>
                     <input type="text" 
-                    name="email" 
-                    id="email" 
-                    onChange={(e) =>
-                        setUser({...user, email: e.target.value})
-                    }/>
+                        name="email" 
+                        id="email" 
+                        onChange={(e) =>
+                            setUser({...user, email: e.target.value})
+                        }
+                        required
+                    />
                 </div>
 
                 <div className="wrapper">
@@ -40,8 +42,10 @@ export default function Login() {
                         name="password" 
                         id="password" 
                         onChange={(e) =>
-                            setUser({...user, password: e.target.value})
-                        }/>
+                                setUser({...user, password: e.target.value})
+                        }
+                        required
+                    />
                 </div>
 
                 <button type="submit" className="bg--blue">Se connecter </button>
@@ -50,6 +54,6 @@ export default function Login() {
                     <button className="bg--green">Créer un compte</button>
                 </Link>
             </form>
-        </>
+        </div>
     )
 }

@@ -39,7 +39,7 @@ nav .login:hover svg {
   color: #fff;
 }
 
-.login {
+.login-nav {
   padding-right: 1em;
   display: flex;
   align-items: center;
