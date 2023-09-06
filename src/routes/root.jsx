@@ -1,5 +1,5 @@
 /**
- * Serve as a layout for the all app 
+ * Serve as a layout for all the app 
  */
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
