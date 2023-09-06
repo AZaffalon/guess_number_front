@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleUser } from '@fortawesome/free-regular-svg-icons'
 
@@ -6,6 +6,7 @@ import { faCircleUser } from '@fortawesome/free-regular-svg-icons'
 import '../assets/navbar.css'
 
 export default function Navbar() {
+
     return(
         <div className="navbar">
             <nav>
@@ -14,18 +15,18 @@ export default function Navbar() {
                         <h3>Express Brain</h3>
                     </li>
                     <li>
-                        <Link to="..">Jouer</Link>
+                        <NavLink to=".." className={({ isActive }) => isActive ? "active" : "not-current"}>Jouer</NavLink>
                     </li>
                     <li>
-                        <Link to="/rank">Classement</Link>
+                        <NavLink to="/rank"  className={({ isActive }) => isActive ? "active" : "not-current"}>Classement</NavLink>
                     </li>
                     <li>
-                        <Link to="/teams">Equipes</Link>
+                        <NavLink to="/teams" className={({ isActive }) => isActive ? "active" : "not-current"}>Equipes</NavLink>
                     </li>
                 </ul>
 
-                <div className='login'>
-                    <Link to="/login">Connexion</Link>
+                <div className='login-nav'>
+                    <NavLink to="/login"  className={({ isActive }) => isActive ? "active" : "not-current"}>Connexion</NavLink>
                     <FontAwesomeIcon icon={faCircleUser} />
                 </div>
             </nav>

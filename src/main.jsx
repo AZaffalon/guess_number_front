@@ -11,6 +11,7 @@ import Game from './components/Game';
 import Login from './components/Login';
 import Rank from './components/Rank';
 import Teams from './components/Teams';
+import Signup from './components/Signup';
 import './index.css'
 
 const router = createBrowserRouter([
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />
+      },
+      {
+        path: "/signup",
+        element: <Signup />
       },
       {
         path: "/rank",

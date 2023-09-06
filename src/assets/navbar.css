@@ -33,21 +33,27 @@ ul {
   flex-grow: 1;
 }
 
-li a,
-nav a,
-nav svg {
-  color: #a7b0cc;
-}
-
 li a:hover,
 nav .login:hover a,
 nav .login:hover svg {
   color: #fff;
 }
 
-.login {
+.login-nav {
   padding-right: 1em;
   display: flex;
   align-items: center;
   gap: 0.5em;
+}
+
+.active {
+  color: #fff;
+}
+
+.not-current {
+  color: #a7b0cc;
+}
+
+.not-current:hover {
+  color: #fff;
 }

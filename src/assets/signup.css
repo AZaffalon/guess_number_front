@@ -1,0 +1,37 @@
+.signup h1 {
+  color: #3c518e;
+  text-align: center;
+}
+
+.signup .form-signup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 1.5em;
+  max-width: 20vw;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  margin: 0 auto;
+  gap: 1em;
+}
+
+.signup .form-signup button {
+  background-color: #3c518e;
+  color: #fff;
+  padding: 1em;
+  margin: 0 auto;
+}
+
+.signup .wrapper {
+  display: flex;
+  gap: 1em;
+  align-items: flex-end;
+}
+
+.signup input {
+  width: 200px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  height: 2em;
+}
