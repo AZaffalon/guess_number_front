@@ -1,13 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import '../assets/login.css'
-import {useContext, useState} from "react";
-import { CurrentTokenContext } from '../routes/root.jsx'
+import {useState} from "react";
 
 export default function Login() {
-    const [user, setUser] = useState(); // TODO => retrieve currentUser
-
-    const { setCurrentToken } = useContext(CurrentTokenContext)
-
+    const [user, setUser] = useState(); // TODO => currentUser not used yet
     const navigate = useNavigate();
 
 
