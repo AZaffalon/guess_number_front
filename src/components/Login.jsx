@@ -1,22 +1,40 @@
 import { Link, useNavigate } from "react-router-dom";
 import '../assets/login.css'
-import { useState } from "react";
+import {useContext, useState} from "react";
+import { CurrentTokenContext } from '../routes/root.jsx'
 
 export default function Login() {
-    const [user, setUser] = useState();
+    const [user, setUser] = useState(); // TODO => retrieve currentUser
+
+    const { setCurrentToken } = useContext(CurrentTokenContext)
+
     const navigate = useNavigate();
 
 
     async function handleSubmit(event) {
         event.preventDefault();
-        await fetch(`${import.meta.env.VITE_HOST_URL}/api/authentication_token`, {
-            method: 'POST',
-            body: JSON.stringify(user),
-            headers: {
-                'Content-Type': 'application/json'
+        try {
+            const response = await fetch(`${import.meta.env.VITE_HOST_URL}/api/authentication_token`, {
+                method: 'POST',
+                body: JSON.stringify(user),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+
+            if(response.ok) {
+                const data = await response.json();
+                const token = data.access_token
+
+                localStorage.setItem('authToken', token)
+
+                navigate('/');
+            } else {
+                console.error("Échec de l'authentification")
             }
-        })
-        navigate('/');
+        } catch(error) {
+            console.error('Il y a une erreur', error)
+        }
     }
 
     return(
@@ -26,9 +44,9 @@ export default function Login() {
             <form className={'form-login'} onSubmit={handleSubmit}>
                 <div className="wrapper">
                     <label htmlFor="email">Email</label>
-                    <input type="text" 
-                        name="email" 
-                        id="email" 
+                    <input type="text"
+                        name="email"
+                        id="email"
                         onChange={(e) =>
                             setUser({...user, email: e.target.value})
                         }
@@ -38,9 +56,9 @@ export default function Login() {
 
                 <div className="wrapper">
                     <label htmlFor="password">Mot de passe</label>
-                    <input type="text" 
-                        name="password" 
-                        id="password" 
+                    <input type="password"
+                        name="password"
+                        id="password"
                         onChange={(e) =>
                                 setUser({...user, password: e.target.value})
                         }
