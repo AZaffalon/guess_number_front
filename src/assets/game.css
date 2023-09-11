@@ -43,6 +43,15 @@
   background-color: #95b259;
 }
 
+.game button:hover {
+  background-color: #80a258;
+  transition: 300ms;
+}
+
+.game button:active {
+  background-color: #718c49;
+}
+
 .game .false,
 .game .success {
   border: 2px solid;
@@ -57,4 +66,10 @@
 .game .success {
   border-color: green;
   color: green;
+}
+
+.game .correct {
+  color: green;
+  font-size: 2em;
+  font-weight: bold;
 }

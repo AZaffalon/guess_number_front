@@ -7,7 +7,11 @@ import {CurrentTokenContext, isTokenValid} from "../routes/root.jsx";
 export default function Game() {
     const [newAttempt, setNewAttempt] = useState()
     const [responseData, setResponseData] = useState()
+    const [correctNumber, setCorrectNumber] = useState()
+
     const { currentToken } = useContext(CurrentTokenContext)
+
+    const inputNumber = document.getElementById('attempt')
 
     /**
      * Call the api after verifying the auth token and return the response
@@ -31,9 +35,13 @@ export default function Game() {
 
             if(response.ok) {
                 const data = await response.json();
-                console.log("data : ", data)
 
                 setResponseData(data);
+
+                // Once the correct number is found we save it so that it can be displayed
+                if (responseData && !data.inProgress) {
+                    setCorrectNumber(inputNumber.value)
+                }
             } else {
                 console.error("Problem fetching data")
             }
@@ -42,17 +50,27 @@ export default function Game() {
         }
     }
 
+    /**
+     * - If not connected the user can only see a preview of the page
+     * - If connected he can play it
+     */
     return currentToken ? (
         <div className="game">
             <h1>EXPRESS BRAINS</h1>
 
-            <p className='explanation'>Découvrez en un minimum de tour le nombre qui se cache derrière la carte mystère !</p>
+            <p className='explanation'>Découvrez le nombre mystère en un minimum de tour !</p>
 
             <div className="container">
-                <FontAwesomeIcon icon={faCircleQuestion} />
+                {
+                    responseData && !responseData.inProgress ? (
+                        <p className={'correct'}>{correctNumber}</p>
+                    ) : (
+                        <FontAwesomeIcon icon={faCircleQuestion} />
+                    )
+                }
 
                 <h3>Qui suis-je ?</h3>
-                <p>Quel nombre se cache derrière cette carte mystère ?</p>
+                <p>Quel nombre se cache ?</p>
                 <input type="number"
                     name="attempt"
                     id="attempt"
@@ -71,7 +89,9 @@ export default function Game() {
                     )
                 }
 
-                <button type='submit' onClick={handleSubmit}>J'ai trouvé !</button>
+                <button type='submit' onClick={handleSubmit}>
+                    { responseData && !responseData.inProgress ?  "J'ai trouvé !" : "Je pense savoir !"  }
+                </button>
             </div>
 
         </div>
@@ -79,13 +99,13 @@ export default function Game() {
         <div className="game">
             <h1>EXPRESS BRAINS</h1>
 
-            <p className='explanation'>Découvrez en un minimum de tour le nombre qui se cache derrière la carte mystère !</p>
+            <p className='explanation'>Découvrez le nombre mystère en un minimum de tour !</p>
 
             <div className="container">
                 <FontAwesomeIcon icon={faCircleQuestion} />
 
                 <h3>Qui suis-je ?</h3>
-                <p>Quel nombre se cache derrière cette carte mystère ?</p>
+                <p>Quel nombre se cache ?</p>
                 <input type="number"
                        name="attempt"
                        id="attempt"
