@@ -3,7 +3,7 @@ import '../assets/login.css'
 import {useState} from "react";
 
 export default function Login() {
-    const [user, setUser] = useState(); // TODO => currentUser not used yet
+    const [user, setUser] = useState();
     const navigate = useNavigate();
 
 

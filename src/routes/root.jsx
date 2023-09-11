@@ -34,6 +34,7 @@ export default function Root() {
 
     const [currentToken, setCurrentToken] = useState(null)
 
+    // Get authentication token
     useEffect(() => {
         const storedToken = localStorage.getItem('authToken')
 
