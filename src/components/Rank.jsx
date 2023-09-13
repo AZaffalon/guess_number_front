@@ -1,5 +1,5 @@
 import {useContext, useEffect, useState} from "react";
-import {isTokenValid} from "../routes/root.jsx";
+import {CurrentTokenContext, isTokenValid, getUserNickname} from "../routes/root.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClock } from '@fortawesome/free-regular-svg-icons'
 
@@ -7,43 +7,9 @@ import '../assets/rank.css'
 
 export default function Rank() {
     const authToken = localStorage.getItem('authToken');
+    const { users } = useContext(CurrentTokenContext)
 
     const [rankList, setRankList] = useState([])
-    const [users, setUsers] = useState([])
-
-    /**
-     * Find corresponding user nickname
-     * @param rank_uuid_string
-     * @returns {Promise<*>}
-     */
-    const getUserNickname = (rank_uuid_string) => {
-        const split_rank_uuid = rank_uuid_string.split('/')
-        const rank_uuid = split_rank_uuid[split_rank_uuid.length -1]
-
-        const user = users.find(user => user.uuid === rank_uuid )
-
-        return user && (user.nickname !== undefined) ? user.nickname : "Inconnu"
-    }
-
-    /**
-     * Call api to save all users in useState
-     * @returns {Promise<void>}
-     */
-    async function getAllUsers() {
-        const response = await fetch(`${import.meta.env.VITE_HOST_URL}/api/users`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'authorization': `Bearer ${authToken}`
-            }
-        })
-        if(response.ok) {
-            const data = await response.json()
-            setUsers(data)
-        } else (
-            console.error("Error fetching all users")
-        )
-    }
 
     useEffect(() => {
         fetch(`${import.meta.env.VITE_HOST_URL}/api/rank`)
@@ -55,9 +21,6 @@ export default function Rank() {
             })
             .then(async data => {
                 setRankList(data)
-                if (isTokenValid(authToken)) {
-                    await getAllUsers()
-                }
             })
             .catch(err => console.error(err) )
     }, []);
@@ -85,7 +48,7 @@ export default function Rank() {
                                     <td>{rank.uuid}</td>
                                     <td>
                                         {
-                                            isTokenValid(authToken) ? getUserNickname(rank.user) : "Anonyme"
+                                            isTokenValid(authToken) ? getUserNickname(users, rank.user) : "Anonyme"
                                         }
                                     </td>
                                     <td>{rank.attempts}</td>
