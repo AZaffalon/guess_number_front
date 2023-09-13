@@ -54,7 +54,7 @@ export default function Game() {
      * - If not connected the user can only see a preview of the page
      * - If connected he can play it
      */
-    return currentToken ? (
+    return currentToken && isTokenValid(currentToken) ? (
         <div className="game">
             <h1>EXPRESS BRAINS</h1>
 
